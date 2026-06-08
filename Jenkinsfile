@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Mayurjoshi00/sonartest.git'
-            }
-        }
-
         stage('Compile') {
             steps {
                 sh 'javac HelloWorld.java'
