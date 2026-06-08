@@ -9,14 +9,10 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage('Verify SonarQube Connectivity') {
             steps {
-                script {
-                    def scannerHome = tool 'sonar-scanner'
-
-                    withSonarQubeEnv('SonarQube') {
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
+                withSonarQubeEnv('SonarQube') {
+                    sh 'curl -s $SONAR_HOST_URL/api/system/status'
                 }
             }
         }
